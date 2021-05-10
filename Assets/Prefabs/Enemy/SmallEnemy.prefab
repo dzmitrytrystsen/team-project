@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 728655264218602371}
   - component: {fileID: 728655264218602370}
   - component: {fileID: 728655264218602374}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SmallEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797671f4f8f6c40e98efdb5bcdb1e7df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  damage: 10
-  speed: 3
-  playerBasePosition: {fileID: 0}
+  _health: 100
+  _damage: 10
+  _speed: 2
