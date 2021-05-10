@@ -12,6 +12,9 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private int _amountToPool = 10;
     [SerializeField] private float _timeBetweenSpawn = 2f;
 
+    public delegate void ReturnEnemyAction();
+    public event ReturnEnemyAction OnEnemyReturnToThePool;
+
     private bool _isLevelRunning;
 
     private List<GameObject> _enemiesToPool = new List<GameObject>();
@@ -40,6 +43,15 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        foreach (GameObject enemy in _enemiesToPool)
+        {
+            enemy.GetComponent<GeneralEnemy>().OnReadyToReturnToThePool -= ReturnEnemyToThePool;
+            enemy.GetComponent<GeneralEnemy>().OnDamageWasTaken -= TryToReturnEnemyToThePool;
+        }
+    }
+
     private GameObject GetEnemyFromPool(List<GameObject> listToPoolFrom)
     {
         for (int i = 0; i < listToPoolFrom.Count; i++)
@@ -60,7 +72,7 @@ public class EnemySpawner : MonoBehaviour
             GameObject gameObject = Instantiate<GameObject>(enemyPrefab, transform.position, Quaternion.identity);
             gameObject.transform.SetParent(transform);
 
-            // Subscribe to Enemy event
+            // Subscribe to the Enemy events
             gameObject.GetComponent<GeneralEnemy>().OnReadyToReturnToThePool += ReturnEnemyToThePool;
             gameObject.GetComponent<GeneralEnemy>().OnDamageWasTaken += TryToReturnEnemyToThePool;
 
@@ -80,5 +92,6 @@ public class EnemySpawner : MonoBehaviour
     private void ReturnEnemyToThePool(GameObject enemyGameObject)
     {
         enemyGameObject.SetActive(false);
+        OnEnemyReturnToThePool?.Invoke();
     }
 }
