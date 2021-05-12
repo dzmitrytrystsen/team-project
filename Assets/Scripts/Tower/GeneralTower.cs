@@ -6,8 +6,11 @@ public abstract class GeneralTower : MonoBehaviour
 {
     [Header("Tower settings")]
     [SerializeField] protected int damage;
-    [SerializeField] protected int speed;
+    [SerializeField] protected int LookSpeed;
     [SerializeField] protected int level;
+    [SerializeField] protected bool seeEnemy = false;
+
+    private Transform enemyTransform;
 
     protected virtual void Start()
     {
@@ -16,6 +19,33 @@ public abstract class GeneralTower : MonoBehaviour
 
     protected virtual void Update()
     {
-        
+        LookAtEnemy();
+    }
+
+    public void AtackEnemy()
+    {
+
+    }
+
+    protected void LookAtEnemy( )
+    {
+         if (seeEnemy == true)
+         {     
+          Vector3 direction = enemyTransform.position - transform.position;
+          Quaternion rotation = Quaternion.LookRotation(direction);
+          transform.rotation = Quaternion.Lerp(transform.rotation, rotation, LookSpeed * Time.deltaTime);
+         }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+            Debug.Log("EnemyStayOnTrigg");
+            seeEnemy = true;
+            enemyTransform = other.transform;
+    }
+    private void OnTriggerExit(Collider other)
+    {
+            Debug.Log("EnemyExit");
+            seeEnemy = false;
     }
 }

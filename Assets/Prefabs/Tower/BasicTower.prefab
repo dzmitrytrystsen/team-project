@@ -113,6 +113,8 @@ MonoBehaviour:
   damage: 10
   speed: 1
   level: 1
+  seeEnemy: 0
+  enemy: {fileID: 0}
 --- !u!1 &2615386517806121689
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,13 +141,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2615386517806121689}
-  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0.59, y: 0.4566812, z: 0}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: 0.02, y: 0.4566812, z: 0.62}
   m_LocalScale: {x: 0.44052875, y: 0.30000007, z: 0.3}
   m_Children: []
   m_Father: {fileID: 8376662333146103871}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
 --- !u!33 &6086866512695004235
 MeshFilter:
   m_ObjectHideFlags: 0
