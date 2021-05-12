@@ -4,6 +4,10 @@ using UnityEngine;
 
 public abstract class GeneralEnemy : MonoBehaviour, IAttackable
 {
+    public int Health => _health;
+    public int Damage => _damage;
+    public float Speed => _speed;
+
     [Header("Enemy settings")]
     [SerializeField] protected int _health;
     [SerializeField] protected int _damage;
