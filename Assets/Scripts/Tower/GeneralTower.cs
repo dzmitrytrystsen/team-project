@@ -6,11 +6,11 @@ public abstract class GeneralTower : MonoBehaviour
 {
     [Header("Tower settings")]
     [SerializeField] protected int damage;
-    [SerializeField] protected int speed;
+    [SerializeField] protected int LookSpeed;
     [SerializeField] protected int level;
     [SerializeField] protected bool seeEnemy = false;
 
-    private Transform enemyPosition;
+    private Transform enemyTransform;
 
     protected virtual void Start()
     {
@@ -27,39 +27,25 @@ public abstract class GeneralTower : MonoBehaviour
 
     }
 
-    public void LookAtEnemy( )
+    protected void LookAtEnemy( )
     {
          if (seeEnemy == true)
          {     
-        Vector3 direction = enemyPosition.transform.position - transform.position;
-        Quaternion rotation = Quaternion.LookRotation(direction);
-        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, speed * Time.deltaTime);
+          Vector3 direction = enemyTransform.position - transform.position;
+          Quaternion rotation = Quaternion.LookRotation(direction);
+          transform.rotation = Quaternion.Lerp(transform.rotation, rotation, LookSpeed * Time.deltaTime);
          }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Enemy")
-        {
-            Debug.Log("EnemyTrigg");
-            seeEnemy = true;          
-        }
-    }
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Enemy")
-        {
             Debug.Log("EnemyStayOnTrigg");
             seeEnemy = true;
-            enemyPosition = other.GetComponent<Transform>();
-        }
+            enemyTransform = other.transform;
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Enemy")
-        {
             Debug.Log("EnemyExit");
             seeEnemy = false;
-        }
     }
 }
