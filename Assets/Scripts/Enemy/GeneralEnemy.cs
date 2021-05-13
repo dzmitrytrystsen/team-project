@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.AI;
 public abstract class GeneralEnemy : MonoBehaviour, IAttackable
 {
     public int Health => _health;
@@ -20,10 +20,12 @@ public abstract class GeneralEnemy : MonoBehaviour, IAttackable
     public event ReadyToReturnToThePoolAction OnReadyToReturnToThePool;
 
     protected Transform _playerBase;
+    private NavMeshAgent _agent;
 
     protected virtual void Start()
     {
         _playerBase = FindObjectOfType<PlayerBase>().transform;
+        _agent = GetComponent<NavMeshAgent>();
     }
 
     protected virtual void Update()
@@ -44,7 +46,7 @@ public abstract class GeneralEnemy : MonoBehaviour, IAttackable
 
         if (Vector3.Distance(transform.position, _playerBase.position) >= 0.1f)
         {
-            transform.position = Vector3.MoveTowards(transform.position, _playerBase.position, step);
+            _agent.SetDestination(_playerBase.position);
         }
     }
 
