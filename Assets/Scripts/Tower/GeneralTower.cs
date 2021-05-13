@@ -39,9 +39,9 @@ public abstract class GeneralTower : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-            Debug.Log("EnemyStayOnTrigg");
-            seeEnemy = true;
-            enemyTransform = other.transform;
+        Debug.Log("EnemyStayOnTrigg");
+        seeEnemy = true;
+        enemyTransform = other.transform;
     }
     private void OnTriggerExit(Collider other)
     {
