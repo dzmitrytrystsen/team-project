@@ -9,7 +9,7 @@ public class EnemySpawner : MonoBehaviour
 
     [Header("Spawn Settings")]
     [SerializeField] private Transform _enemyStartPosition;
-    [SerializeField] private int _amountToPool = 10;
+    [SerializeField] private int _amountToPool = 50;
     [SerializeField] private float _timeBetweenSpawn = 2f;
 
     public delegate void ReturnEnemyAction();
@@ -38,7 +38,6 @@ public class EnemySpawner : MonoBehaviour
             GameObject enemyFromPool = GetEnemyFromPool(_enemiesToPool);
             enemyFromPool.transform.position = _enemyStartPosition.position;
             enemyFromPool.gameObject.SetActive(true);
-
             yield return new WaitForSeconds(_timeBetweenSpawn);
         }
     }

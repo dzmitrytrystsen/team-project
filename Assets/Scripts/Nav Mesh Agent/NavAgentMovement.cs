@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 public class NavAgentMovement : MonoBehaviour
 {
-    public Transform transformBase;
+ //   public Transform transformBase;
     
     private Camera cam;
     private NavMeshAgent agent;
@@ -12,7 +12,8 @@ public class NavAgentMovement : MonoBehaviour
     {
         cam = Camera.main;
         agent = GetComponent<NavMeshAgent>();
-        agent.SetDestination(transformBase.position);
+        print(FindObjectOfType<PlayerBase>());
+     //   agent.SetDestination(transformBase.position);
     }
     
     void Update()
