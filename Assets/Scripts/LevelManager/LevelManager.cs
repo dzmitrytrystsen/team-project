@@ -15,7 +15,7 @@ public class LevelManager : MonoBehaviour
     {
         _enemiesKilled = 0;
 
-        _enemySpawner.OnEnemyReturnToThePool += TryToCompleteLevel;
+        _enemySpawner.OnEnemyWasKilled += TryToCompleteLevel;
     }
 
     private void Start()

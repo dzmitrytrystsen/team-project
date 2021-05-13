@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [Header("Enemy Settings")]
-    [SerializeField] private GameObject _enemyPrefab;
+    [SerializeField] private GeneralEnemy _enemyPrefab;
 
     [Header("Spawn Settings")]
     [SerializeField] private Transform _enemyStartPosition;
@@ -15,9 +15,12 @@ public class EnemySpawner : MonoBehaviour
     public delegate void ReturnEnemyAction();
     public event ReturnEnemyAction OnEnemyReturnToThePool;
 
+    public delegate void EnemyIsKilledAction();
+    public event EnemyIsKilledAction OnEnemyWasKilled;
+
     private bool _isLevelRunning;
 
-    private List<GameObject> _enemiesToPool = new List<GameObject>();
+    private List<GeneralEnemy> _enemiesToPool = new List<GeneralEnemy>();
 
     private void Awake()
     {
@@ -35,7 +38,7 @@ public class EnemySpawner : MonoBehaviour
     {
         while (_isLevelRunning)
         {
-            GameObject enemyFromPool = GetEnemyFromPool(_enemiesToPool);
+            GeneralEnemy enemyFromPool = GetEnemyFromPool(_enemiesToPool);
             enemyFromPool.transform.position = _enemyStartPosition.position;
             enemyFromPool.gameObject.SetActive(true);
             yield return new WaitForSeconds(_timeBetweenSpawn);
@@ -44,18 +47,18 @@ public class EnemySpawner : MonoBehaviour
 
     private void OnDestroy()
     {
-        foreach (GameObject enemy in _enemiesToPool)
+        foreach (GeneralEnemy enemy in _enemiesToPool)
         {
             enemy.GetComponent<GeneralEnemy>().OnReadyToReturnToThePool -= ReturnEnemyToThePool;
             enemy.GetComponent<GeneralEnemy>().OnDamageWasTaken -= TryToReturnEnemyToThePool;
         }
     }
 
-    private GameObject GetEnemyFromPool(List<GameObject> listToPoolFrom)
+    private GeneralEnemy GetEnemyFromPool(List<GeneralEnemy> listToPoolFrom)
     {
         for (int i = 0; i < listToPoolFrom.Count; i++)
         {
-            if (!listToPoolFrom[i].activeInHierarchy)
+            if (!listToPoolFrom[i].gameObject.activeInHierarchy)
             {
                 return listToPoolFrom[i];
             }
@@ -64,26 +67,30 @@ public class EnemySpawner : MonoBehaviour
         return null;
     }
 
-    private void GeneratePoolEnemies(int amountToPool, GameObject enemyPrefab, List<GameObject> listToAdd)
+    private void GeneratePoolEnemies(int amountToPool, GeneralEnemy enemyPrefab, List<GeneralEnemy> listToAdd)
     {
         for (int i = 0; i < amountToPool; i++)
         {
-            GameObject gameObject = Instantiate<GameObject>(enemyPrefab, transform.position, Quaternion.identity);
-            gameObject.transform.SetParent(transform);
+            GeneralEnemy enemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+            enemy.gameObject.transform.SetParent(transform);
 
             // Subscribe to the Enemy events
-            gameObject.GetComponent<GeneralEnemy>().OnReadyToReturnToThePool += ReturnEnemyToThePool;
-            gameObject.GetComponent<GeneralEnemy>().OnDamageWasTaken += TryToReturnEnemyToThePool;
+            enemy.OnReadyToReturnToThePool += ReturnEnemyToThePool;
+            enemy.OnDamageWasTaken += TryToReturnEnemyToThePool;
 
-            gameObject.SetActive(false);
-            listToAdd.Add(gameObject);
+            enemy.gameObject.SetActive(false);
+            listToAdd.Add(enemy);
         }
     }
 
     private void TryToReturnEnemyToThePool(int enemyHealthLeft, GameObject enemyGameObject)
     {
         if (enemyHealthLeft <= 0)
+        {
             ReturnEnemyToThePool(enemyGameObject);
+            OnEnemyWasKilled?.Invoke();
+        }
+
         else
             return;
     }
@@ -91,6 +98,7 @@ public class EnemySpawner : MonoBehaviour
     private void ReturnEnemyToThePool(GameObject enemyGameObject)
     {
         enemyGameObject.SetActive(false);
+        enemyGameObject.GetComponent<GeneralEnemy>().ResetHealth();
         OnEnemyReturnToThePool?.Invoke();
     }
 }

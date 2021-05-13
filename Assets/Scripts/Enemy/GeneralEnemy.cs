@@ -20,7 +20,14 @@ public abstract class GeneralEnemy : MonoBehaviour, IAttackable
     public event ReadyToReturnToThePoolAction OnReadyToReturnToThePool;
 
     protected Transform _playerBase;
-    private NavMeshAgent _agent;
+    protected NavMeshAgent _agent;
+
+    private int _default_health;
+
+    protected virtual void Awake()
+    {
+        _default_health = _health;
+    }
 
     protected virtual void Start()
     {
@@ -32,6 +39,11 @@ public abstract class GeneralEnemy : MonoBehaviour, IAttackable
     {
         MoveToPlayerBase();
         RotateTowardsPlayerBase();
+    }
+
+    public void ResetHealth()
+    {
+        _health = _default_health;
     }
 
     public void Attack(int damage)
@@ -57,9 +69,9 @@ public abstract class GeneralEnemy : MonoBehaviour, IAttackable
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<PlayerBase>())
+        if (other.gameObject.TryGetComponent(out PlayerBase playerBase))
         {
-            _playerBase.gameObject.GetComponent<PlayerBase>().Attack(_damage);
+            playerBase.Attack(_damage);
             OnReadyToReturnToThePool?.Invoke(gameObject);
         }
     }
