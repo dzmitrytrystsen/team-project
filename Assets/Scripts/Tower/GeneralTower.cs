@@ -5,12 +5,16 @@ using UnityEngine;
 public abstract class GeneralTower : MonoBehaviour
 {
     [Header("Tower settings")]
-    [SerializeField] protected int damage;
-    [SerializeField] protected int LookSpeed;
+    [SerializeField] protected float LookSpeed;
+    [SerializeField] protected float waitSpawnBullet;
     [SerializeField] protected int level;
     [SerializeField] protected bool seeEnemy = false;
 
+    [SerializeField] protected Transform spawnTransform;
+    [SerializeField] protected GameObject bulletType;
+
     private Transform enemyTransform;
+
 
     protected virtual void Start()
     {
@@ -22,10 +26,6 @@ public abstract class GeneralTower : MonoBehaviour
         LookAtEnemy();
     }
 
-    public void AtackEnemy()
-    {
-
-    }
 
     protected void LookAtEnemy( )
     {
