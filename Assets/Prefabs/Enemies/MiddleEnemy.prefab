@@ -12,7 +12,12 @@ GameObject:
   - component: {fileID: 728655264218602372}
   - component: {fileID: 728655264218602371}
   - component: {fileID: 728655264218602370}
+<<<<<<< Updated upstream
   - component: {fileID: 728655264218602374}
+=======
+  - component: {fileID: 3152845299435856653}
+  - component: {fileID: 4111202557886325110}
+>>>>>>> Stashed changes
   m_Layer: 6
   m_Name: MiddleEnemy
   m_TagString: Untagged
@@ -96,7 +101,33 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+<<<<<<< Updated upstream
 --- !u!114 &728655264218602374
+=======
+--- !u!195 &3152845299435856653
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728655264218602369}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &4111202557886325110
+>>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,9 +136,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 728655264218602369}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<< Updated upstream
   m_Script: {fileID: 11500000, guid: 797671f4f8f6c40e98efdb5bcdb1e7df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 100
+=======
+  m_Script: {fileID: 11500000, guid: 0844f6c3a26be44178e4bf4b2491365a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 60
+>>>>>>> Stashed changes
   _damage: 20
   _speed: 2
