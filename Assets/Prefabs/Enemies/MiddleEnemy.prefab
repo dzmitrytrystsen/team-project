@@ -12,9 +12,8 @@ GameObject:
   - component: {fileID: 728655264218602372}
   - component: {fileID: 728655264218602371}
   - component: {fileID: 728655264218602370}
-  - component: {fileID: 728655264218602374}
   - component: {fileID: 3152845299435856653}
-  - component: {fileID: 5922689907279177757}
+  - component: {fileID: 4111202557886325110}
   m_Layer: 6
   m_Name: MiddleEnemy
   m_TagString: Untagged
@@ -98,21 +97,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &728655264218602374
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 728655264218602369}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 797671f4f8f6c40e98efdb5bcdb1e7df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _health: 100
-  _damage: 20
-  _speed: 2
 --- !u!195 &3152845299435856653
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -135,7 +119,7 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &5922689907279177757
+--- !u!114 &4111202557886325110
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,6 +128,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 728655264218602369}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 026861815289acf45a719aa922acdcb0, type: 3}
+  m_Script: {fileID: 11500000, guid: 0844f6c3a26be44178e4bf4b2491365a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _health: 60
+  _damage: 20
+  _speed: 2
