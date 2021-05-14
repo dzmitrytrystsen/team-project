@@ -12,9 +12,15 @@ TagManager:
   - Water
   - UI
   - Enemy
+<<<<<<< Updated upstream
   - 
   - 
   - 
+=======
+  - Tower
+  - Bullet
+  - Ground
+>>>>>>> Stashed changes
   - 
   - 
   - 
