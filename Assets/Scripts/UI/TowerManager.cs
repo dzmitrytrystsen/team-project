@@ -20,4 +20,5 @@ public class TowerManager : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         instance.GetComponent<DragManager>().draged = false;
         instance = null;
     }
+
 }

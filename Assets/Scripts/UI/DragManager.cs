@@ -11,7 +11,7 @@ public class DragManager : MonoBehaviour
         instance = this;
     }
 
-    void Update()
+    private void Update()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
