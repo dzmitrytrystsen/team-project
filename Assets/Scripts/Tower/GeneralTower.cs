@@ -13,25 +13,24 @@ public abstract class GeneralTower : MonoBehaviour
     [SerializeField] protected Transform spawnTransform;
     [SerializeField] protected GameObject bulletType;
 
-    private Transform enemyTransform;
-
+    private Transform _enemyTransform;
 
     protected virtual void Start()
     {
-
+     
     }
 
     protected virtual void Update()
     {
         LookAtEnemy();
     }
-
+   
 
     protected void LookAtEnemy( )
     {
          if (seeEnemy == true)
          {     
-          Vector3 direction = enemyTransform.position - transform.position;
+          Vector3 direction = _enemyTransform.position - transform.position;
           Quaternion rotation = Quaternion.LookRotation(direction);
           transform.rotation = Quaternion.Lerp(transform.rotation, rotation, LookSpeed * Time.deltaTime);
          }
@@ -39,10 +38,11 @@ public abstract class GeneralTower : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        _enemyTransform = other.transform;
         Debug.Log("EnemyStayOnTrigg");
         seeEnemy = true;
-        enemyTransform = other.transform;
     }
+
     private void OnTriggerExit(Collider other)
     {
             Debug.Log("EnemyExit");

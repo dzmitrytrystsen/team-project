@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicTower : GeneralTower
+public class SplashTower : GeneralTower
 {
     protected override void Start()
     {
@@ -18,7 +18,6 @@ public class BasicTower : GeneralTower
 
     }
 
-   
     IEnumerator AttackEnemy()
     {
         while (true)
@@ -26,11 +25,11 @@ public class BasicTower : GeneralTower
             if (seeEnemy == true)
             {
                 Instantiate(bulletType, spawnTransform.position, spawnTransform.rotation);
-                
+
             }
-            
+
             yield return new WaitForSeconds(waitSpawnBullet);
         }
-               
+
     }
 }

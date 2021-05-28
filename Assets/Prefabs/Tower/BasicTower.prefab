@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6900091456718003554}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spawn Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,8 @@ GameObject:
   - component: {fileID: 8775695600946999257}
   - component: {fileID: -1944552253493196881}
   - component: {fileID: 3536897614068575692}
-  m_Layer: 0
+  - component: {fileID: 1967426492}
+  m_Layer: 7
   m_Name: BasicTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,8 +128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a66646c6ef83f2488ae494df83bc10b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LookSpeed: 2
-  waitSpawnBullet: 1
+  LookSpeed: 10
+  waitSpawnBullet: 0.5
   level: 1
   seeEnemy: 0
   spawnTransform: {fileID: 6900091456718003554}
@@ -142,11 +143,27 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2236983897844368110}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &1967426492
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2236983897844368110}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2615386517806121689
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,7 +176,7 @@ GameObject:
   - component: {fileID: 6086866512695004235}
   - component: {fileID: 3655590479423927880}
   - component: {fileID: 5841727856709183669}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}

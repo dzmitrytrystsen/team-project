@@ -12,7 +12,9 @@ GameObject:
   - component: {fileID: 3458746609587181422}
   - component: {fileID: 3458746609587181417}
   - component: {fileID: 3458746609587181416}
-  m_Layer: 0
+  - component: {fileID: -7439520618327336066}
+  - component: {fileID: 3777269141747253163}
+  m_Layer: 7
   m_Name: SplashTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,11 +94,46 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3458746609587181419}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-7439520618327336066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3458746609587181419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91e426277aba6a644a5ad44f2059efa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LookSpeed: 1
+  waitSpawnBullet: 3
+  level: 0
+  seeEnemy: 0
+  spawnTransform: {fileID: 5151788910297588529}
+  bulletType: {fileID: 6346360459439258539, guid: d3ce4d8869475584bb34d444a7e581cc,
+    type: 3}
+--- !u!54 &3777269141747253163
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3458746609587181419}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &3458746610214532887
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,7 +146,7 @@ GameObject:
   - component: {fileID: 3458746610214532875}
   - component: {fileID: 3458746610214532874}
   - component: {fileID: 3458746610214532885}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,7 +239,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5151788910297588529}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,7 +254,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7564868828768531761}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.998, z: 0}
+  m_LocalPosition: {x: 0, y: 1.664, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3458746609587181423}
