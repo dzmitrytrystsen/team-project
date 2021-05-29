@@ -14,6 +14,7 @@ public abstract class GeneralTower : MonoBehaviour
     [SerializeField] protected GameObject bulletType;
 
     private Transform _enemyTransform;
+    GeneralEnemy generalEnemy;
 
     protected virtual void Start()
     {
@@ -35,17 +36,33 @@ public abstract class GeneralTower : MonoBehaviour
           transform.rotation = Quaternion.Lerp(transform.rotation, rotation, LookSpeed * Time.deltaTime);
          }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        generalEnemy = other.gameObject.GetComponent<GeneralEnemy>();
+        generalEnemy.OnDamageWasTaken += TryToSwapTarget;
+    }
 
     private void OnTriggerStay(Collider other)
     {
         _enemyTransform = other.transform;
+       
         Debug.Log("EnemyStayOnTrigg");
         seeEnemy = true;
+        //Debug.Log(_enemyTransform.gameObject.GetComponent<GeneralEnemy>().Health);
     }
 
     private void OnTriggerExit(Collider other)
     {
             Debug.Log("EnemyExit");
             seeEnemy = false;
+        generalEnemy.OnDamageWasTaken -= TryToSwapTarget;
+    }
+   void TryToSwapTarget(int healthLeft, GameObject enemy)
+    {
+        if (healthLeft <= 0)
+        {
+            seeEnemy = false;
+        }
+        Debug.Log("Enemy was damaged");
     }
 }

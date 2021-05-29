@@ -27,6 +27,7 @@ public class SplashBullet : GeneralBullet
             }              
 
         }
+        Destroy(gameObject);
     }
     //private void ondrawgizmos()
     //{
